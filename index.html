@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Método Húngaro Interactivo</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Demo Interactivo del Método Húngaro</h1>
+      <p>Define la matriz de costos:</p>
+      <div class="controls">
+        <button id="addRowBtn">+ Añadir fila</button>
+        <button id="addColBtn">+ Añadir columna</button>
+        <button id="minBtn" class="action-btn">Resolver (Minimizar)</button>
+        <button id="maxBtn" class="action-btn">Resolver (Maximizar)</button>
+      </div>
+      <table id="costMatrix"></table>
+      <div id="steps"></div>
+    </div>
+    <script src="hungaro.js"></script>
+  </body>
+</html>
