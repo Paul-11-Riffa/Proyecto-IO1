@@ -64,20 +64,24 @@ input[type=number] {
 }
 
 .controls {
-  text-align: center;
-  margin-bottom: 20px;
+    display: flex;
+  flex-wrap: wrap;       /* para que bajen a la siguiente línea si no caben */
+  gap: 0.75rem;           /* espacio uniforme entre todos los botones */
+  justify-content: center;/* o flex-start, según prefieras */
+  margin-bottom: 1rem;
 }
 
 .controls button {
   background: #2a6f97;
   color: #fff;
   border: none;
-  padding: 10px 16px;
-  margin: 0 5px;
-  border-radius: 6px;
   cursor: pointer;
   font-weight: 600;
   transition: background 0.3s;
+  margin: 0;
+  padding: 0.5rem 1rem;   /* un poco más de padding para que estén más “gruesos” */
+  border-radius: 0.25rem; /* bordes suaves */
+  font-size: 0.9rem;
 }
 
 .controls button:hover {
