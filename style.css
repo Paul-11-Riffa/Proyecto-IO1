@@ -1,6 +1,6 @@
 /* Archivo: styles.css */
 
-/* Reset básico y box-sizing */
+/* Reset básico y configuración de la fuente */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -9,66 +9,47 @@
 
 body {
   font-family: 'Montserrat', sans-serif;
-  background: #f0f4f8;
+  background-color: #f0f4f8;
   color: #333;
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding: 20px;
+  padding: 40px 20px;
+  min-height: 100vh;
 }
 
 .container {
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 39, 74, 0.1);
   width: 100%;
-  max-width: 800px;
-  padding: 30px;
+  max-width: 950px;
+  padding: 30px 40px;
 }
 
 h1 {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   font-weight: 600;
-  color: #2a6f97;
+  color: #012a4a;
 }
 
 p {
-  margin-bottom: 10px;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 15px 0;
-}
-
-th, td {
-  border: 1px solid #e1e8ed;
-  padding: 10px;
   text-align: center;
-  border-radius: 4px;
+  margin-bottom: 30px;
+  color: #4a6fa5;
+  font-size: 16px;
 }
 
-tr:nth-child(even) {
-  background: #f7fafc;
-}
-
-input[type=number] {
-  width: 70px;
-  padding: 6px;
-  border: 1px solid #cbd5e0;
-  border-radius: 4px;
-  text-align: center;
-  font-size: 14px;
-}
-
+/* Controles y Botones */
 .controls {
-    display: flex;
-  flex-wrap: wrap;       /* para que bajen a la siguiente línea si no caben */
-  gap: 0.75rem;           /* espacio uniforme entre todos los botones */
-  justify-content: center;/* o flex-start, según prefieras */
-  margin-bottom: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #e1e8ed;
 }
 
 .controls button {
@@ -77,25 +58,258 @@ input[type=number] {
   border: none;
   cursor: pointer;
   font-weight: 600;
-  transition: background 0.3s;
-  margin: 0;
-  padding: 0.5rem 1rem;   /* un poco más de padding para que estén más “gruesos” */
-  border-radius: 0.25rem; /* bordes suaves */
-  font-size: 0.9rem;
+  transition: all 0.2s ease-in-out;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .controls button:hover {
-  background: #244f6b;
+  background: #2c7da0;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
 
+.controls button:disabled {
+  background-color: #b1d4e0;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Botones de acción principales (Resolver) */
+button#minBtn, button#maxBtn {
+  background-color: #1fe0b0; /* Verde para acciones principales */
+}
+
+button#minBtn:hover, button#maxBtn:hover {
+  background-color: #1fe0b0;
+}
+
+
+/* Tabla de Matriz */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 30px;
+  table-layout: fixed; /* Clave para alinear columnas */
+}
+
+th, td {
+  padding: 6px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* Inputs dentro de la tabla */
+table input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #d0d5dd;
+  border-radius: 6px;
+  text-align: center;
+  font-size: 16px;
+  font-family: 'Montserrat', sans-serif;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+table input:focus {
+  outline: none;
+  border-color: #2a6f97;
+  box-shadow: 0 0 0 3px rgba(42, 111, 151, 0.15);
+}
+
+/* Estilos específicos para los encabezados */
+thead th:first-child {
+  background-color: transparent; /* Esquina vacía */
+}
+
+thead th input, tbody th input {
+  background-color: #014f86;
+  color: white;
+  font-weight: 600;
+  border: none;
+}
+
+thead th input::placeholder, tbody th input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+
+/* Panel de Pasos */
 #steps {
   background: #eef6fb;
-  padding: 15px;
+  padding: 20px;
   border-radius: 8px;
-  max-height: 300px;
+  max-height: 280px;
   overflow-y: auto;
   white-space: pre-wrap;
   font-family: 'Courier New', monospace;
   font-size: 14px;
-  border: 1px solid #cbd5e0;
+  border: 1px solid #e1e8ed;
+  line-height: 1.6;
+}
+/* --- ESTILOS PARA EL MODAL DE SOLUCIÓN --- */
+
+/* Clase que se añade al body para difuminar el fondo */
+body.modal-active > .container {
+    filter: blur(5px);
+    transition: filter 0.3s ease-in-out;
+}
+
+/* El contenedor del modal (fondo oscuro) */
+.modal-container {
+  display: none; /* Oculto por defecto */
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px); /* Para Safari */
+  justify-content: center;
+  align-items: center;
+}
+
+/* El contenido de la ventana modal */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 25px 35px;
+  border: 1px solid #888;
+  width: 90%;
+  max-width: 650px;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+  position: relative;
+  text-align: center;
+}
+
+/* Botón para cerrar (la X) */
+.modal-close-btn {
+  color: #aaa;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.modal-close-btn:hover,
+.modal-close-btn:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#modalStepTitle {
+  margin-top: 0;
+  margin-bottom: 25px;
+  color: #012a4a;
+}
+
+#modalMatrixContainer {
+  margin-bottom: 20px;
+}
+
+/* Estilo para la tabla dentro del modal */
+.modal-matrix {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+
+.modal-matrix td {
+  border: 1px solid #ddd;
+  padding: 8px 12px;
+  font-size: 16px;
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+}
+
+/* Texto de la solución final */
+#modalFinalResult {
+    margin-top: 15px;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* Contenedor para los botones de navegación */
+.modal-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+  margin-top: 20px;
+}
+
+.modal-navigation button {
+  background: #2a6f97;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s;
+  padding: 10px 20px;
+  border-radius: 6px;
+}
+
+.modal-navigation button:hover {
+  background: #2c7da0;
+}
+
+.modal-navigation button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+#modalStepCounter {
+  font-weight: 600;
+  color: #555;
+  font-size: 14px;
+}
+/* --- ESTILOS PARA LAS LÍNEAS DE COBERTURA --- */
+
+/* Se añade 'position: relative' para que las líneas se posicionen dentro de él */
+#modalMatrixContainer {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.cover-line {
+  position: absolute;
+  background-color: #483d8b; /* Un color morado oscuro */
+  opacity: 0.6;
+  pointer-events: none; /* Para que no interfieran con el mouse */
+}
+
+.cover-line.horizontal {
+  height: 4px; /* Grosor de la línea */
+  width: 100%;
+  left: 0;
+  transform: translateY(-50%); /* Centra la línea verticalmente */
+}
+
+.cover-line.vertical {
+  width: 4px; /* Grosor de la línea */
+  height: 100%;
+  top: 0;
+  transform: translateX(-50%); /* Centra la línea horizontalmente */
+}
+
+/* --- ESTILO PARA CELDA DE ASIGNACIÓN FINAL --- */
+
+.modal-matrix .highlight-cell {
+  background-color: #e8f5e9; /* Un fondo verde muy claro */
+  border: 2px solid #4CAF50; /* Un borde verde más oscuro */
+  color: #1b5e20;            /* Texto verde oscuro para legibilidad */
+  font-weight: bold;
+  border-radius: 6px;
+  box-shadow: 0 0 10px rgba(76, 175, 80, 0.3); /* Un sutil brillo */
 }
