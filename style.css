@@ -313,3 +313,25 @@ body.modal-active > .container {
   border-radius: 6px;
   box-shadow: 0 0 10px rgba(76, 175, 80, 0.3); /* Un sutil brillo */
 }
+
+/* --- ESTILO PARA CELDA DE ASIGNACIÓN FINAL --- */
+
+.modal-matrix .highlight-cell {
+  background-color: #e8f5e9; /* Un fondo verde muy claro */
+  border: 2px solid #4CAF50; /* Un borde verde más oscuro */
+  color: #1b5e20;            /* Texto verde oscuro para legibilidad */
+  font-weight: bold;
+  border-radius: 6px;
+  box-shadow: 0 0 10px rgba(76, 175, 80, 0.3); /* Un sutil brillo */
+}
+
+/* --- MODIFICACIÓN AQUÍ: AÑADIR ESTE NUEVO ESTILO --- */
+/* --- ESTILO PARA CELDA DE MÍNIMO ENCONTRADO --- */
+
+.modal-matrix .highlight-min {
+  background-color: #fffde7; /* Un amarillo muy pálido */
+  border: 2px solid #fbc02d; /* Un borde amarillo/dorado */
+  color: #c49000;
+  font-weight: bold;
+  border-radius: 6px;
+}
